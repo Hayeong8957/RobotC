@@ -5,6 +5,7 @@
 #pragma config(Motor, motorC, rm, tmotorEV3_Large, PIDControl, encoder)
 #define DIFF 10
 
+
 int nMotorSpeedSetting = 35, vertex = 0, count = 0, row = 0, val;
 
 
@@ -14,14 +15,14 @@ void go()
 	if(getColorName(c2) == 4)
 	{
 		setMotorSpeed(lm, nMotorSpeedSetting - val);
-		setMotorSpeed(rm, nMotorSpeedSetting + val);
+		setMotorSpeed(rm, nMotorSpeedSetting + val);		
 	}
 	else
 	{
 		setMotorSpeed(lm, nMotorSpeedSetting + val);
 		setMotorSpeed(rm, nMotorSpeedSetting - val);
 	}
-	if(row % 2 == 1 || row == 3)
+	if(row % 2 == 1 || row == 3) 
 	{
 		if(getColorName(c1) == 4) vertex++;
 		else vertex = 0;
@@ -85,41 +86,33 @@ void stopMotor()
 	setMotorSpeed(rm, 0);
 }
 
-void goMovePoint()
+void movePoint()
 {
-	count = row = 0;
-
-	stopMotor();
-	sleep(500);
-
-	turnLeft();
-	turnLeft();
-	sleep(500);
-	while(count == 3)
-	{
-		val = 7;
-		if(getColorName(c2) == 4)
-		{
-			setMotorSpeed(lm, nMotorSpeedSetting - val);
-			setMotorSpeed(rm, nMotorSpeedSetting + val);
-		}
-		else
-		{
-			setMotorSpeed(lm, nMotorSpeedSetting + val);
-			setMotorSpeed(rm, nMotorSpeedSetting - val);
-		}
-		if(getColorName(c1) == 4 || getColorName(c3) == 4)
-		{
-			vertex++;
-		}
-		else vertex = 0;
-		if(vertex == 1) count++;
-	}
+	turnRight();
 	sleep(300);
+	turnRight();
+	sleep(300);
+	count = 0;
+	while(true)
+	{
+		go();
+		if (count == 3)
+		{
+			setMotorSpeed(lm, 35);
+			setMotorSpeed(rm, 30);
+			sleep(400);
+			turnLeft();
+			break;
+		}
+	}
 }
+
+
 
 task main()
 {
+	while (getButtonPress(1) == 0 ){}
+	while (getButtonPress(1) == 1 ){}
 	while(true)
 	{
 		go();
@@ -127,7 +120,21 @@ task main()
 		{
 			if(row == 3)
 			{
-				break;
+				turnLeft();
+				turnLeft();
+				sleep(500);
+				count = 0;
+				sleep(500);
+				while(count == 3)
+				{
+					go();
+					sleep(500);
+					stopMotor();
+					sleep(500);
+					turnLeft();
+				}
+                
+         break;
 			}
 			if(row % 2 == 0)
 			{
@@ -161,7 +168,8 @@ task main()
 			count = 0;
 		}
 	}
-	goMovePoint();
-	playTone(240, 20); sleep(200);
+	movePoint();
 	stopMotor();
+	playTone(240, 20); 
+	sleep(200);
 }
