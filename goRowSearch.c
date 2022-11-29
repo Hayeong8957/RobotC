@@ -6,13 +6,15 @@
 #define DIFF 10
 
 
-int nMotorSpeedSetting = 35, vertex = 0, count = 0, row = 0, val;
+int nMotorSpeedSetting = 35, vertex = 0, count = 0, row = 0, val,
+r = 0, c = 0, i, j, f, e;
+int S[5][5], dt[5][5], d[5], J[5][5];
 
 
 void go()
 {
 	val = 7;
-	if(getColorName(c2) == 4)
+	if(getColorName(c2) == 4) // yellow
 	{
 		setMotorSpeed(lm, nMotorSpeedSetting - val);
 		setMotorSpeed(rm, nMotorSpeedSetting + val);		
@@ -32,7 +34,7 @@ void go()
 		if(getColorName(c3) == 4) vertex++;
 		else vertex = 0;
 	}
-	if(vertex == 1) count++;
+	if(vertex == 1) count++; // 패치 탐색 함수
 }
 
 void turnLeft()
