@@ -129,7 +129,7 @@ void completeSearch()
 		if(count == 3)
 		{
 			if(row == 3) return;
-			if(row % 2 == 0)
+			if(row % 2 == 0) // 0, 2 번째 행
 			{
 				setMotorSpeed(lm, 40);
 				setMotorSpeed(rm, 35);
@@ -156,10 +156,10 @@ void completeSearch()
 				}
 				turnRight();
 			}
-			else
+			else // 1, 3번째 행
 			{
 				// 행 끝에서 빨간색 패치의 유무를 확인하기 위해
-				for(int i = 0; i<3;i++)
+				for(int i = 0; i < 3;i++)
 				{
 					if(getColorName(c2) == Red)
 					{
@@ -272,6 +272,7 @@ task main()
 	sleep(1650);
 
 	count = row = 0;
+	
 // 그래프를 탐색한 결과를 토대로 최고 득점 경로를 계산
 // (0,0)부터 (3, 3)까지의 위치에 대해 다음 계산을 각각 수행. 
 // e는 행이고, f는 열
