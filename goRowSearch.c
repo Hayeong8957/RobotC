@@ -6,7 +6,7 @@
 #define DIFF 10
 
 
-int nMotorSpeedSetting = 35, vertex = 0, count = 0, row = 0, val,
+int nMotorSpeedSetting = 35, vertex = 0, count = -1, row = 0, val,
 r = 0, c = 0, i, j, f, e;
 int S[5][5], dt[5][5], d[5], J[5][5];
 
@@ -17,14 +17,14 @@ void go()
 	if(getColorName(c2) == 4) // yellow
 	{
 		setMotorSpeed(lm, nMotorSpeedSetting - val);
-		setMotorSpeed(rm, nMotorSpeedSetting + val);		
+		setMotorSpeed(rm, nMotorSpeedSetting + val);
 	}
 	else
 	{
 		setMotorSpeed(lm, nMotorSpeedSetting + val);
 		setMotorSpeed(rm, nMotorSpeedSetting - val);
 	}
-	if(row % 2 == 1 || row == 3) 
+	if(row % 2 == 1 || row == 3)
 	{
 		if(getColorName(c1) == 4) vertex++;
 		else vertex = 0;
@@ -34,7 +34,7 @@ void go()
 		if(getColorName(c3) == 4) vertex++;
 		else vertex = 0;
 	}
-	if(vertex == 1) count++; // 패치 탐색 함수
+	if(vertex == 1) count++;
 }
 
 void turnLeft()
@@ -113,8 +113,6 @@ void movePoint()
 
 task main()
 {
-	while (getButtonPress(1) == 0 ){}
-	while (getButtonPress(1) == 1 ){}
 	while(true)
 	{
 		go();
@@ -135,7 +133,7 @@ task main()
 					sleep(500);
 					turnLeft();
 				}
-                
+
          break;
 			}
 			if(row % 2 == 0)
@@ -172,6 +170,6 @@ task main()
 	}
 	movePoint();
 	stopMotor();
-	playTone(240, 20); 
+	playTone(240, 20);
 	sleep(200);
 }
