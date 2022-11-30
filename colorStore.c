@@ -12,8 +12,8 @@ int S[4][4], dt[4][4], d[4], J[4][4];
 
 void colorSearchTurn()
 {
-      setMotorSpeed(lm, 13);
-      setMotorSpeed(rm, -13);
+      setMotorSpeed(lm, 15);
+      setMotorSpeed(rm, -15);
       sleep(150);
       setMotorSpeed(lm, 0);
       setMotorSpeed(rm, 0);
@@ -32,7 +32,7 @@ int patchSector()
    max_color = getColorName(c2);
 
    if (init == 0 ){
-         displayBigTextLine(1, "S[%d][%d] = NOT", row , count);
+         displayBigTextLine(1, "S[%d][%d] = EMPTY", row , count);
          M[row][count] = 0;
          sleep(1000);
          init++;
@@ -49,7 +49,7 @@ int patchSector()
          sleep(1000);
       }
       else{
-         displayBigTextLine(1, "S[%d][%d] = NOT", row , ++count);
+         displayBigTextLine(1, "S[%d][%d] = EMPTY", row , ++count);
          M[row][count] = 0;
          sleep(1000);
       }
@@ -67,7 +67,7 @@ int patchSector()
          sleep(1000);
       }
       else{
-         displayBigTextLine(1,"S[%d][%d] = NOT", row, 3-(++count));
+         displayBigTextLine(1,"S[%d][%d] = EMPTY", row, 3-(++count));
          M[row][3-count] = 0;
          sleep(1000);
       }
@@ -126,7 +126,7 @@ void go()
      else
         vertex = 0;
   }
-   // Edit motot speed
+   // Edit motor speed
   if(vertex == 1)
   {
      if(row == 0 || row == 2)
@@ -265,10 +265,10 @@ void completeSearch()
                     go();
                 }
                 colorSearchTurn();
-                      sleep(150);
-                     setMotorSpeed(lm, 10);
-                      setMotorSpeed(rm, 12);
-                      sleep(80);
+                sleep(150);
+                setMotorSpeed(lm, 10);
+                setMotorSpeed(rm, 12);
+                sleep(80);
 
                 count = -1;
                 S[row][3] = patchSector();
@@ -286,10 +286,10 @@ void completeSearch()
                     go();
                 }
                 colorSearchTurn();
-                      sleep(150);
-                      setMotorSpeed(lm, 10);
-                    setMotorSpeed(rm, 12);
-                      sleep(80);
+                sleep(150);
+                setMotorSpeed(lm, 10);
+                setMotorSpeed(rm, 12);
+                sleep(80);
 
                 count = -1;
                 S[row][0] = patchSector();
