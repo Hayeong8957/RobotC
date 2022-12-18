@@ -10,6 +10,10 @@
 - final_task_1.c : 첫 번째 과제 소스 코드
 - final_task_2.c : 두 번째 과제 소스 코드
 
+# 각 단계별 주행 영상
+- 1단계 주행 영상(정상배속) : https://youtu.be/q_B_IEjv0lU
+- 2단계 주행 영상(정상배속) : https://youtu.be/r4jALdkGJ8s
+
 # 발표 ppt
 ![0](https://user-images.githubusercontent.com/70371342/208296833-26113e8a-c05e-4162-b69e-3ef64dbce194.png)
 ![1](https://user-images.githubusercontent.com/70371342/208296838-22f15467-be2f-4a00-9a1b-5214146f6afe.png)
